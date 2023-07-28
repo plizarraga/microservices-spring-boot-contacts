@@ -1,0 +1,52 @@
+type Query {
+  # Contacts
+  findAllContacts: [Contact]
+  findContactById(contactId: String): Contact
+
+  # Phone Numbers
+  findAllPhoneNumbers: [PhoneNumber]
+  findPhoneNumberById(phoneNumberId: String): PhoneNumber
+}
+
+type Mutation {
+  # Contacts
+  createContact(inputContact: InputContact!): Contact
+  deleteContact(contactId: String!): String
+
+  # Phone Numbers
+  createPhoneNumber(inputPhoneNumber: InputPhoneNumber!): PhoneNumber
+  deletePhoneNumber(phoneNumberId: String!): String
+}
+
+type Contact {
+  id: ID
+  name: String
+  email: String
+  address: String
+  phoneNumbers: [PhoneNumber]
+}
+
+type PhoneNumber {
+  id: ID
+  number: String
+  description: String
+  contact: Contact
+}
+
+input InputContact {
+  name: String!
+  email: String!
+  address: String!
+  phoneNumbers: [InputContactPhoneNumber]
+}
+
+input InputContactPhoneNumber {
+  number: String!
+  description: String!
+}
+
+input InputPhoneNumber {
+  number: String!
+  description: String!
+  contactId: String!
+}
