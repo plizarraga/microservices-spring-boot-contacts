@@ -19,15 +19,17 @@ public class PhoneNumberService {
     private final PhoneNumberRepository phoneNumberRepository;
 
     public void savePhoneNumber(PhoneNumber phoneNumber) {
+        log.info("Phone number saved: {}", phoneNumber.getNumber());
         phoneNumberRepository.save(phoneNumber);
-        log.info("Phone number added: {}", phoneNumber);
     }
 
     public List<PhoneNumber> findAllPhoneNumbers() {
+        log.info("Find all phone numbers");
         return phoneNumberRepository.findAll();
     }
 
     public PhoneNumber findPhoneNumberById(Long phoneNumberId) {
+        log.info("Find phone number by id: {}", phoneNumberId);
         var phoneNumber = phoneNumberRepository.findById(phoneNumberId).orElse(null);
         return phoneNumber;
     }
@@ -37,11 +39,12 @@ public class PhoneNumberService {
                 .orElse(null);
 
         if (phoneNumber == null) {
+            log.info("Phone number deleted by id not found: {}", phoneNumberId);
             return new GenericResponse(false, "Phone number not found");
         }
 
         phoneNumberRepository.delete(phoneNumber);
-        log.info("Phone number deleted: {}", phoneNumber);
+        log.info("Phone number deleted by id: {}", phoneNumberId);
 
         return new GenericResponse(true, "Phone number deleted successfully");
     }

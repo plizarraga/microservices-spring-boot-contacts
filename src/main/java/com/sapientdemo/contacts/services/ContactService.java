@@ -19,15 +19,17 @@ public class ContactService {
     private final ContactRepository contactRepository;
 
     public void saveContact(Contact contact) {
+        log.info("Contact saved: {}", contact.getName());
         contactRepository.save(contact);
-        log.info("Contact added: {}", contact);
     }
 
     public List<Contact> findAllContacts() {
+        log.info("Find all contacts");
         return contactRepository.findAll();
     }
 
     public Contact findContactById(Long contactId) {
+        log.info("Find contact by id: {}", contactId);
         var contact = contactRepository.findById(contactId).orElse(null);
         return contact;
     }
@@ -37,11 +39,12 @@ public class ContactService {
                 .orElse(null);
 
         if (contact == null) {
+            log.info("Contact deleted by id not found: {}", contactId);
             return new GenericResponse(false, "Contact not found");
         }
 
         contactRepository.delete(contact);
-        log.info("Contact deleted: {}", contact);
+        log.info("Contact deleted by id: {}", contactId);
 
         return new GenericResponse(true, "Contact deleted successfully");
     }
