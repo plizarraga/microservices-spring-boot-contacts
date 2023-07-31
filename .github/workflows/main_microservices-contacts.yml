@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: containerpedlizar.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a870229afdff43b48f61e71a87b8a850 }}/containerpedlizar/microservices-contacts-app:${{ github.sha }}
+        tags: containerpedlizar.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a870229afdff43b48f61e71a87b8a850 }}/microservices-contacts-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'microservices-contacts'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9c4278616a834ce185d01b0a08ec2b9f }}
-        images: 'containerpedlizar.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a870229afdff43b48f61e71a87b8a850 }}/containerpedlizar/microservices-contacts-app:${{ github.sha }}'
+        images: 'containerpedlizar.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a870229afdff43b48f61e71a87b8a850 }}/microservices-contacts-app:${{ github.sha }}'
