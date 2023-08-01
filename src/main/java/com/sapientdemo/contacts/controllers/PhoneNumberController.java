@@ -42,7 +42,7 @@ public class PhoneNumberController {
         PhoneNumber phoneNumber = new PhoneNumber();
 
         phoneNumber.setNumber(inputPhoneNumber.getNumber());
-        phoneNumber.setDescription(inputPhoneNumber.getNumber());
+        phoneNumber.setDescription(inputPhoneNumber.getDescription());
 
         // Set contact
         Long contactId = Long.parseLong(inputPhoneNumber.getContactId());
